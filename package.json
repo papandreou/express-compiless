@@ -4,7 +4,8 @@
     "description": "Express middleware that compiles less files to css on the way out.",
     "main": "lib/index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "prepublish": "mocha"
     },
     "repository": {
         "type": "git",
