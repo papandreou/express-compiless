@@ -3,10 +3,24 @@ express-compiless
 
 Middleware that compiles less to css on-the-fly. Intended to be used
 in a development setting with the `connect.static` middleware, but
-should work with any middleware further down the stack, as long as a
-`text/less` response is served. Or if the `Content-Type` of the
-response is `application/octet-stream` and the request url ends in
-`.less`.
+should work with any middleware further down the stack, even an http
+proxy.
+
+The response will be rewritten under these circumstances:
+
+* If the response is served with a `Content-Type` of `text/less`.
+* If the request url ends in `.less` (excluding GET parameters) and
+  the `Content-Type` is `application/octet-stream` (this is what
+  <a href="https://senchalabs/connect/">Connect</a>'s `static`
+  middleware does.
+
+Compiless plays nice with conditional GET. If the original response
+has an ETag, compiless will add to it so the ETag of the compiled
+response never clashes with the original ETag. That prevents the
+middleware issuing the original response to be confused into sending a
+false positive `304 Not Modified` if compiless is turned off or
+removed from the stack later.
+
 
 Installation
 ------------
