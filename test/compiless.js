@@ -33,7 +33,7 @@ describe('test server', function () {
 
     it('request for less file with @import', function (done) {
         request(baseUrl + '/stylesheet.less', passError(done, function (response, body) {
-            expect(body).to.equal('/*@IMPORTED:imports/a.less*/\nbody {\n  width: 100%;\n}\n#foo #bar {\n  color: red;\n}\n');
+            expect(body).to.equal('.compilessinclude {src: url(imports/a.less);}\nbody {\n  width: 100%;\n}\n#foo #bar {\n  color: red;\n}\n');
             expect(response.headers['content-type']).to.equal('text/css');
             done();
         }));
