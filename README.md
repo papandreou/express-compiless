@@ -17,9 +17,9 @@ The response will be rewritten under these circumstances:
 Compiless plays nice with conditional GET. If the original response
 has an ETag, compiless will add to it so the ETag of the compiled
 response never clashes with the original ETag. That prevents the
-middleware issuing the original response to be confused into sending a
-false positive `304 Not Modified` if compiless is turned off or
-removed from the stack later.
+middleware issuing the original response from being confused into
+sending a false positive `304 Not Modified` if compiless is turned
+off or removed from the stack later.
 
 
 Installation
