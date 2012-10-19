@@ -39,22 +39,30 @@ describe('test server', function () {
         }));
     });
 
-    // Unfortunately less.render throws instead of passing the error to our callback.
-    // Hopefully the solution for https://github.com/cloudhead/less.js/issues/462 will remedy this.
-
-    /*
     it('request for less file with syntax error', function (done) {
         request(baseUrl + '/syntaxerror.less', passError(done, function (response, body) {
-            expect(response.statusCode).to.equal(500);
+            expect(response.statusCode).to.equal(200);
+            expect(response.headers['content-type']).to.equal('text/css');
+            expect(body).to.match(/^body:before \{.*Error.*\/syntaxerror\.less.*missing closing `\}`/);
             done();
         }));
     });
 
     it('request for less file with @import error', function (done) {
         request(baseUrl + '/importerror.less', passError(done, function (response, body) {
-            expect(response.statusCode).to.equal(500);
+            expect(response.statusCode).to.equal(200);
+            expect(response.headers['content-type']).to.equal('text/css');
+            expect(body).to.match(/^body:before \{.*Error.*\/importerror\.less.*ENOENT.*notfound\.less/);
             done();
         }));
     });
-    */
+
+    it('request for less file with second level @import error', function (done) {
+        request(baseUrl + '/secondlevelimporterror.less', passError(done, function (response, body) {
+            expect(response.statusCode).to.equal(200);
+            expect(response.headers['content-type']).to.equal('text/css');
+            expect(body).to.match(/^body:before \{.*Error.*\/secondlevelimporterror\.less.*ENOENT.*notfound\.less/);
+            done();
+        }));
+    });
 });
