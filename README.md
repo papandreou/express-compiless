@@ -40,7 +40,7 @@ var express = require('express'),
 express.createServer()
     .use(compiless({root: root}))
     .use(express.static(root))
-    .listen(1337, done);
+    .listen(1337);
 ```
 
 License
