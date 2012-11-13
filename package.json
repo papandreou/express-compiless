@@ -21,6 +21,7 @@
     "author": "Andreas Lind Petersen <andreas@one.com>",
     "license": "BSD",
     "dependencies": {
+        "bufferjs": "=1.1.0",
         "express-hijackresponse": "=0.0.7",
         "less": "=1.3.0",
         "passerror": "=0.0.1",
