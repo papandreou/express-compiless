@@ -2,7 +2,7 @@
     "name": "express-compiless",
     "version": "0.0.9",
     "description": "Express middleware that compiles less files to css on the way out.",
-    "main": "lib/index.js",
+    "main": "lib/compiless.js",
     "scripts": {
         "test": "mocha",
         "prepublish": "mocha"

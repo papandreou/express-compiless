@@ -3,7 +3,7 @@ var express = require('express'),
     request = require('request'),
     passError = require('passerror'),
     expect = require('expect.js'),
-    compiless = require('../lib/');
+    compiless = require('../lib/compiless');
 
 describe('test server', function () {
     var root = Path.resolve(__dirname, 'root'),
