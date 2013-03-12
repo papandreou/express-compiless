@@ -22,7 +22,7 @@
     "license": "BSD",
     "dependencies": {
         "bufferjs": "=1.1.0",
-        "express-hijackresponse": "=0.0.7",
+        "express-hijackresponse": "=0.1.0",
         "less": "=1.3.3",
         "passerror": "=0.0.1",
         "seq": "=0.3.5",
