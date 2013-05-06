@@ -1,6 +1,6 @@
 {
     "name": "express-compiless",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "description": "Express middleware that compiles less files to css on the way out.",
     "main": "lib/compiless.js",
     "scripts": {
