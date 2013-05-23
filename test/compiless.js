@@ -43,7 +43,7 @@ describe('test server with compiless', function () {
         request(baseUrl + '/syntaxerror.less', passError(done, function (response, body) {
             expect(response.statusCode).to.equal(200);
             expect(response.headers['content-type']).to.equal('text/css');
-            expect(body).to.match(/^body:before \{.*Error.*\/syntaxerror\.less.*missing closing `\}`/);
+            expect(body).to.match(/body:before \{.*Error.*\/syntaxerror\.less.*missing closing `\}`/);
             done();
         }));
     });
@@ -52,7 +52,7 @@ describe('test server with compiless', function () {
         request(baseUrl + '/importerror.less', passError(done, function (response, body) {
             expect(response.statusCode).to.equal(200);
             expect(response.headers['content-type']).to.equal('text/css');
-            expect(body).to.match(/^body:before \{.*Error.*\/importerror\.less.*ENOENT.*notfound\.less/);
+            expect(body).to.match(/body:before \{.*Error.*\/importerror\.less.*ENOENT.*notfound\.less/);
             done();
         }));
     });
@@ -61,7 +61,7 @@ describe('test server with compiless', function () {
         request(baseUrl + '/secondlevelimporterror.less', passError(done, function (response, body) {
             expect(response.statusCode).to.equal(200);
             expect(response.headers['content-type']).to.equal('text/css');
-            expect(body).to.match(/^body:before \{.*Error.*\/secondlevelimporterror\.less.*ENOENT.*notfound\.less/);
+            expect(body).to.match(/body:before \{.*Error.*\/secondlevelimporterror\.less.*ENOENT.*notfound\.less/);
             done();
         }));
     });
