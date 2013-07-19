@@ -21,11 +21,11 @@
     "author": "Andreas Lind Petersen <andreas@one.com>",
     "license": "BSD",
     "dependencies": {
+        "async": "=0.2.9",
         "bufferjs": "=1.1.0",
         "express-hijackresponse": "=0.1.2",
         "less": "=1.4.1",
-        "passerror": "=0.0.1",
-        "seq": "=0.3.5",
+        "passerror": "=0.0.2",
         "underscore": "=1.4.2"
     },
     "devDependencies": {
