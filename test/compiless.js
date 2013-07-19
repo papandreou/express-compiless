@@ -33,7 +33,7 @@ describe('test server with compiless', function () {
 
     it('should compile less file with @import to css with .compilessinclude rules first', function (done) {
         request(baseUrl + '/stylesheet.less', passError(done, function (response, body) {
-            expect(body).to.equal('.compilessinclude {background-image: url(imports/a.less); display: none;}\nbody {\n  width: 100%;\n}\n#foo #bar {\n  color: red;\n}\n');
+            expect(body).to.equal('.compilessinclude {background-image: url(imports/a.less); display: none;}\nbody {\n  width: 100%;\n}\n#foo #bar {\n  color: red;\n}\n/* multi-line\n   comment\n*/\n');
             expect(response.headers['content-type']).to.equal('text/css');
             done();
         }));
