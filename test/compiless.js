@@ -65,4 +65,13 @@ describe('test server with compiless', function () {
             done();
         }));
     });
+
+    it('should rewrite urls correctly', function (done) {
+        request(baseUrl + '/importLessWithRelativeImageReferenceInDifferentDir.less', passError(done, function (response, body) {
+            expect(response.statusCode).to.equal(200);
+            expect(response.headers['content-type']).to.equal('text/css');
+            expect(body).to.match(/url\(imports\/images\/foo.png\)/);
+            done();
+        }));
+    });
 });
