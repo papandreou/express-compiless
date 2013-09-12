@@ -74,4 +74,13 @@ describe('test server with compiless', function () {
             done();
         }));
     });
+
+    it('should deliver a response even though the less file has @imports and references an undefined variable', function (done) {
+        request(baseUrl + '/undefinedVariable.less', passError(done, function (response, body) {
+            expect(response.statusCode).to.equal(200);
+            expect(response.headers['content-type']).to.equal('text/css');
+            expect(body).to.match(/Error compiling.*variable.*undefined/);
+            done();
+        }));
+    });
 });
