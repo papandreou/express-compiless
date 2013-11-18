@@ -24,7 +24,7 @@
     "async": "=0.2.9",
     "bufferjs": "=1.1.0",
     "express-hijackresponse": "=0.1.2",
-    "less": "=1.4.2",
+    "less": "=1.5.1",
     "passerror": "=0.0.2",
     "underscore": "=1.4.2"
   },
