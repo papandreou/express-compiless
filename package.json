@@ -22,6 +22,7 @@
   "license": "BSD",
   "dependencies": {
     "async": "=0.2.9",
+    "csserror": "^1.0.1",
     "express-hijackresponse": "=0.1.2",
     "less": "=1.5.1",
     "passerror": "=0.0.2",
