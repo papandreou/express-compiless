@@ -2,7 +2,7 @@ express-compiless
 =================
 
 Middleware that compiles less to css on-the-fly. Intended to be used
-in a development setting with the `connect.static` middleware, but
+in a development setting with the `express.static` middleware, but
 should work with any middleware further down the stack, even an http
 proxy.
 
@@ -11,7 +11,7 @@ The response will be rewritten under these circumstances:
 * If the response is served with a `Content-Type` of `text/less`.
 * If the request url ends in `.less` (excluding GET parameters) and
   the `Content-Type` is `application/octet-stream` (this is what
-  <a href="https://senchalabs/connect/">Connect</a>'s `static`
+  <a href="https://github.com/senchalabs/connect">Connect</a>'s `static`
   middleware does.
 
 Compiless plays nice with conditional GET. If the original response
@@ -37,7 +37,7 @@ var express = require('express'),
     compiless = require('express-compiless'),
     root = '/path/to/my/static/files';
 
-express.createServer()
+express()
     .use(compiless({root: root}))
     .use(express.static(root))
     .listen(1337);
