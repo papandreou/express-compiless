@@ -29,7 +29,7 @@
     "underscore": "=1.4.2"
   },
   "devDependencies": {
-    "express": "4.9.5",
+    "express": "4.10.7",
     "mocha": "=1.8.1",
     "request": "=2.11.4",
     "unexpected": "=1.0.11"
