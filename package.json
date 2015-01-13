@@ -30,8 +30,11 @@
   },
   "devDependencies": {
     "express": "4.10.7",
+    "messy": "6.2.0",
     "mocha": "=1.8.1",
     "request": "=2.11.4",
-    "unexpected": "6.4.0"
+    "unexpected": "7.0.3",
+    "unexpected-express": "6.1.0",
+    "unexpected-messy": "3.0.3"
   }
 }
