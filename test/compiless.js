@@ -31,6 +31,21 @@ describe('test server with compiless', function () {
         }));
     });
 
+    it('should respond with an ETag header and support conditional GET', function (done) {
+        request(baseUrl + '/simple.less', passError(done, function (response, body) {
+            expect(response.statusCode, 'to equal', 200);
+            expect(body, 'to equal', '#foo #bar {\n  color: blue;\n}\n');
+            expect(response.headers['content-type'], 'to equal', 'text/css; charset=utf-8');
+            var etag = response.headers.etag;
+            expect(etag, 'to match', /^W\/".*-compiless"$/);
+            request({url: baseUrl + '/simple.less', headers: {'If-None-Match': etag}}, passError(done, function (response, body) {
+                expect(response.statusCode, 'to equal', 304);
+                expect(response.headers.etag, 'to equal', etag);
+                done();
+            }));
+        }));
+    });
+
     it('should compile less file with @import to css with .compilessinclude rules first', function (done) {
         request(baseUrl + '/stylesheet.less', passError(done, function (response, body) {
             expect(body, 'to equal', '.compilessinclude {background-image: url(imports/a.less); display: none;}\nbody {\n  width: 100%;\n}\n#foo #bar {\n  color: red;\n}\n/* multi-line\n   comment\n*/\n');
