@@ -58,7 +58,7 @@ describe('test server with compiless', function () {
         request(baseUrl + '/syntaxerror.less', passError(done, function (response, body) {
             expect(response.statusCode, 'to equal', 200);
             expect(response.headers['content-type'], 'to equal', 'text/css; charset=utf-8');
-            expect(body, 'to match', /body:before \{.*Error.*\/syntaxerror\.less.*missing closing `\}` at line 8/);
+            expect(body, 'to match', /body:before \{.*Error.*\/syntaxerror\.less.*Possibly missing something at line 8/);
             done();
         }));
     });

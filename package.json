@@ -24,7 +24,7 @@
     "async": "=0.2.9",
     "csserror": "^1.0.1",
     "express-hijackresponse": "0.2.1",
-    "less": "=1.5.1",
+    "less": ">= 2.4.0",
     "passerror": "1.1.0",
     "underscore": "=1.4.2"
   },
@@ -32,6 +32,6 @@
     "express": "4.10.7",
     "mocha": "=1.8.1",
     "request": "=2.11.4",
-    "unexpected": "=1.0.11"
+    "unexpected": "6.4.0"
   }
 }
