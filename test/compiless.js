@@ -15,6 +15,9 @@ describe('test server with compiless', function () {
     before(function (done) {
         server = express()
             .use(compiless({root: root}))
+            .use('/hello', function (req, res, next) {
+                res.send({foo: 123});
+            })
             .use(express.static(root))
             .listen(portNumber, done);
     });
@@ -27,6 +30,14 @@ describe('test server with compiless', function () {
         request(baseUrl + '/something.txt', passError(done, function (response, body) {
             expect(body, 'to equal', "foo\n");
             expect(response.headers['content-type'], 'to equal', 'text/plain; charset=UTF-8');
+            done();
+        }));
+    });
+
+    it('should not mess with request for non-less related route', function (done) {
+        request(baseUrl + '/hello', passError(done, function (response, body) {
+            expect(body, 'to equal', '{"foo":123}');
+            expect(response.headers['content-type'], 'to equal', 'application/json; charset=utf-8');
             done();
         }));
     });
