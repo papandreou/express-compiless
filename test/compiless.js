@@ -7,7 +7,6 @@ var express = require('express'),
 describe('compiless', function () {
     var root = Path.resolve(__dirname, 'root'),
         expect = unexpected.clone()
-            .installPlugin(require('unexpected-messy'))
             .installPlugin(require('unexpected-express'))
             .addAssertion('to yield response', function (expect, subject, value) {
                 return expect(
