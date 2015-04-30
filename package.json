@@ -36,7 +36,6 @@
     "jshint": "2.7.0",
     "messy": "6.2.0",
     "mocha": "2.2.4",
-    "request": "=2.11.4",
     "unexpected": "7.0.3",
     "unexpected-express": "6.1.0",
     "unexpected-messy": "3.0.3"
