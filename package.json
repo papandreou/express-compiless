@@ -4,8 +4,10 @@
   "description": "Express middleware that compiles less files to css on the way out.",
   "main": "lib/compiless.js",
   "scripts": {
-    "test": "mocha",
-    "prepublish": "mocha"
+    "lint": "jshint .",
+    "test": "mocha && npm run lint",
+    "travis": "npm test && npm run coverage && <coverage/lcov.info coveralls",
+    "coverage": "NODE_ENV=development istanbul cover _mocha -- --reporter dot && echo google-chrome coverage/lcov-report/index.html"
   },
   "repository": {
     "type": "git",
@@ -28,9 +30,12 @@
     "passerror": "1.1.0"
   },
   "devDependencies": {
+    "coveralls": "2.11.2",
     "express": "4.10.7",
+    "istanbul": "0.3.13",
+    "jshint": "2.7.0",
     "messy": "6.2.0",
-    "mocha": "=1.8.1",
+    "mocha": "2.2.4",
     "request": "=2.11.4",
     "unexpected": "7.0.3",
     "unexpected-express": "6.1.0",

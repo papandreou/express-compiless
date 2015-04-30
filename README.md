@@ -1,6 +1,11 @@
 express-compiless
 =================
 
+[![NPM version](https://badge.fury.io/js/express-compiless.svg)](http://badge.fury.io/js/express-compiless)
+[![Build Status](https://travis-ci.org/papandreou/express-compiless.svg?branch=master)](https://travis-ci.org/papandreou/express-compiless)
+[![Coverage Status](https://coveralls.io/repos/papandreou/express-compiless/badge.svg)](https://coveralls.io/r/papandreou/express-compiless)
+[![Dependency Status](https://david-dm.org/papandreou/express-compiless.svg)](https://david-dm.org/papandreou/express-compiless)
+
 Middleware that compiles less to css on-the-fly. Intended to be used
 in a development setting with the `express.static` middleware, but
 should work with any middleware further down the stack, even an http
