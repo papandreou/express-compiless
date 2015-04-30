@@ -1,7 +1,6 @@
+/*global describe, it, __dirname*/
 var express = require('express'),
     Path = require('path'),
-    request = require('request'),
-    passError = require('passerror'),
     unexpected = require('unexpected'),
     compiless = require('../lib/compiless');
 
@@ -17,7 +16,7 @@ describe('compiless', function () {
                         .use('/hello', function (req, res, next) {
                             res.send({foo: 123});
                         })
-                        .use(express.static(root)),
+                        .use(express['static'](root)),
                     'to yield exchange', {
                         request: subject,
                         response: value
@@ -45,7 +44,7 @@ describe('compiless', function () {
                 'Content-Type': 'text/css; charset=utf-8',
                 ETag: /^W\/".*-compiless"$/
             },
-            body: '#foo #bar {\n  color: blue;\n}\n',
+            body: '#foo #bar {\n  color: blue;\n}\n'
         }).then(function (context) {
             var etag = context.httpResponse.headers.get('ETag');
             return expect({
