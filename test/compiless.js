@@ -89,6 +89,16 @@ describe('compiless', function () {
         });
     });
 
+    it('should render less file that has an @import that points at a file with a syntax error', function () {
+        return expect('GET /importedsyntaxerror.less', 'to yield response', {
+            statusCode: 200,
+            headers: {
+                'Content-Type': 'text/css; charset=utf-8'
+            },
+            body: /Error compiling.*importedsyntaxerror.less:.*Unrecognised input. Possibly missing something at line 8/
+        });
+    });
+
     it('should render less file that has an second level @import error with the error message as the first thing in the output, wrapped in a body:before rule', function () {
         return expect('GET /secondlevelimporterror.less', 'to yield response', {
             statusCode: 200,
