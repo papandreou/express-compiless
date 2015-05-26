@@ -14,7 +14,11 @@ describe('compiless', function () {
                     express()
                         .use(compiless({root: root}))
                         .use('/hello', function (req, res, next) {
-                            res.send({foo: 123});
+                            res.setHeader('Content-Type', 'text/plain');
+                            res.setHeader('ETag', 'W/"fake-etag"');
+                            res.status(200);
+                            res.write('world');
+                            res.end();
                         })
                         .use(express['static'](root)),
                     'to yield exchange', {
@@ -27,14 +31,22 @@ describe('compiless', function () {
     it('should not mess with request for non-less file', function () {
         return expect('GET /something.txt', 'to yield response', {
             headers: {
-                'Content-Type': 'text/plain; charset=UTF-8'
+                'Content-Type': 'text/plain; charset=UTF-8',
+                'ETag': expect.it('not to match', /-compiless/),
+                'Content-Length': '4'
             },
             body: 'foo\n'
         });
     });
 
     it('should not mess with request for non-less related route', function () {
-        return expect('GET /hello', 'to yield response', { body: { foo: 123 } });
+        return expect('GET /hello', 'to yield response', {
+            headers: {
+                'Content-Type': 'text/plain',
+                'ETag': expect.it('not to match', /-compiless/)
+            },
+            body: 'world'
+        });
     });
 
     it('should respond with an ETag header and support conditional GET', function () {
