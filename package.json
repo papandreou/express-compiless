@@ -38,6 +38,7 @@
     "mocha": "2.2.4",
     "unexpected": "8.2.0",
     "unexpected-express": "7.0.1",
+    "unexpected-fs": "1.1.0",
     "unexpected-messy": "4.0.0"
   }
 }
