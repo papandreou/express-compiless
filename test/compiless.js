@@ -7,8 +7,26 @@ var express = require('express'),
 describe('compiless', function () {
     var root = Path.resolve(__dirname, 'root'),
         expect = unexpected.clone()
+            .installPlugin(require('unexpected-fs'))
             .installPlugin(require('unexpected-express'))
             .addAssertion('to yield response', function (expect, subject, value) {
+                var root = '/data';
+                var app = express()
+                    .use(compiless({root: root}))
+                    .use('/hello', function (req, res, next) {
+                        res.setHeader('Content-Type', 'text/plain');
+                        res.setHeader('ETag', 'W/"fake-etag"');
+                        res.status(200);
+                        res.write('world');
+                        res.end();
+                    })
+                    .use(express['static'](root));
+                return expect(app, 'to yield exchange', {
+                    request: subject,
+                    response: value
+                });
+            })
+            .addAssertion('original to yield response', function (expect, subject, value) {
                 return expect(
                     express()
                         .use(compiless({root: root}))
@@ -28,7 +46,11 @@ describe('compiless', function () {
             });
 
     it('should not mess with request for non-less file', function () {
-        return expect('GET /something.txt', 'to yield response', {
+        return expect('GET /something.txt', 'with fs mocked out', {
+            '/data': {
+                'something.txt': 'foo\n'
+            }
+        }, 'to yield response', {
             headers: {
                 'Content-Type': 'text/plain; charset=UTF-8',
                 'ETag': expect.it('not to match', /-compiless/),
@@ -49,7 +71,17 @@ describe('compiless', function () {
     });
 
     it('should respond with an ETag header and support conditional GET', function () {
-        return expect('GET /simple.less', 'to yield response', {
+        var mockFs = {
+            '/data': {
+                'simple.less': {
+                    _isFile: true,
+                    ctime: new Date(2),
+                    mtime: new Date(2),
+                    content: '#foo { #bar { color: blue; } }'
+                }
+            }
+        };
+        return expect('GET /simple.less', 'with fs mocked out', mockFs, 'to yield response', {
             statusCode: 200,
             headers: {
                 'Content-Type': 'text/css; charset=utf-8',
@@ -63,7 +95,7 @@ describe('compiless', function () {
                 headers: {
                     'If-None-Match': etag
                 }
-            }, 'to yield response', {
+            }, 'with fs mocked out', mockFs, 'to yield response', {
                 statusCode: 304,
                 headers: {
                     ETag: etag
@@ -73,7 +105,35 @@ describe('compiless', function () {
     });
 
     it('should compile less file with @import to css with .compilessinclude rules first', function () {
-        return expect('GET /stylesheet.less', 'to yield response', {
+        var mockFs = {
+            '/data': {
+                'imports': {
+                    'a.less': [
+                        'body {',
+                        '    width: 100%;',
+                        '}',
+                        ''
+                    ].join('\n')
+                },
+                'stylesheet.less': [
+                    '@import "imports/a.less";',
+                    '',
+                    '#foo {',
+                    '     #bar {',
+                    '          color: red;',
+                    '     }',
+                    '}',
+                    '',
+                    '// Single-line comment',
+                    '',
+                    '/* multi-line',
+                    '   comment',
+                    '*/',
+                    ''
+                ].join('\n')
+            }
+        };
+        return expect('GET /stylesheet.less', 'with fs mocked out', mockFs, 'to yield response', {
             headers: {
                 'Content-Type': 'text/css; charset=utf-8'
             },
@@ -82,7 +142,7 @@ describe('compiless', function () {
     });
 
     it('should render less file that has a syntax error with the error message as the first thing in the output, wrapped in a body:before rule', function () {
-        return expect('GET /syntaxerror.less', 'to yield response', {
+        return expect('GET /syntaxerror.less', 'original to yield response', {
             statusCode: 200,
             headers: {
                 'Content-Type': 'text/css; charset=utf-8'
@@ -92,7 +152,7 @@ describe('compiless', function () {
     });
 
     it('should render less file that has an @import error with the error message as the first thing in the output, wrapped in a body:before rule', function () {
-        return expect('GET /importerror.less', 'to yield response', {
+        return expect('GET /importerror.less', 'original to yield response', {
             statusCode: 200,
             headers: {
                 'Content-Type': 'text/css; charset=utf-8'
@@ -102,7 +162,7 @@ describe('compiless', function () {
     });
 
     it('should render less file that has an @import that points at a file with a syntax error', function () {
-        return expect('GET /importedsyntaxerror.less', 'to yield response', {
+        return expect('GET /importedsyntaxerror.less', 'original to yield response', {
             statusCode: 200,
             headers: {
                 'Content-Type': 'text/css; charset=utf-8'
@@ -112,7 +172,7 @@ describe('compiless', function () {
     });
 
     it('should render less file that has an second level @import error with the error message as the first thing in the output, wrapped in a body:before rule', function () {
-        return expect('GET /secondlevelimporterror.less', 'to yield response', {
+        return expect('GET /secondlevelimporterror.less', 'original to yield response', {
             statusCode: 200,
             headers: {
                 'Content-Type': 'text/css; charset=utf-8'
@@ -122,7 +182,7 @@ describe('compiless', function () {
     });
 
     it('should rewrite urls correctly', function () {
-        return expect('GET /importLessWithRelativeImageReferenceInDifferentDir.less', 'to yield response', {
+        return expect('GET /importLessWithRelativeImageReferenceInDifferentDir.less', 'original to yield response', {
             statusCode: 200,
             headers: {
                 'Content-Type': 'text/css; charset=utf-8'
@@ -132,7 +192,7 @@ describe('compiless', function () {
     });
 
     it('should deliver a response even though the less file has @imports and references an undefined variable', function () {
-        return expect('GET /undefinedVariable.less', 'to yield response', {
+        return expect('GET /undefinedVariable.less', 'original to yield response', {
             statusCode: 200,
             headers: {
                 'Content-Type': 'text/css; charset=utf-8'
