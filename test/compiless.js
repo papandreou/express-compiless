@@ -72,6 +72,30 @@ describe('compiless', function () {
         });
     });
 
+
+    it('should not destroy if-none-match for non .less files', function () {
+        return expect('GET /something.txt', 'to yield response', {
+            statusCode: 200,
+            headers: {
+                ETag: /^W\/"\d-\d+"$/
+            },
+            body: 'foo\n'
+        }).then(function (context) {
+            var etag = context.httpResponse.headers.get('ETag');
+            return expect({
+                url: 'GET /something.txt',
+                headers: {
+                    'If-None-Match': etag
+                }
+            }, 'to yield response', {
+                statusCode: 304,
+                headers: {
+                    ETag: etag
+                }
+            });
+        });
+    });
+
     it('should compile less file with @import to css with .compilessinclude rules first', function () {
         return expect('GET /stylesheet.less', 'to yield response', {
             headers: {
