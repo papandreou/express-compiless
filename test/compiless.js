@@ -11,7 +11,7 @@ describe('compiless', function () {
             .addAssertion('to yield response', function (expect, subject, value) {
                 return expect(
                     express()
-                        .use(compiless({root: root}))
+                        .use(compiless({ root: root }))
                         .use('/hello', function (req, res, next) {
                             res.setHeader('Content-Type', 'text/plain');
                             res.setHeader('ETag', 'W/"fake-etag"');
@@ -64,11 +64,11 @@ describe('compiless', function () {
                     'If-None-Match': etag
                 }
             }, 'to yield response', {
-                statusCode: 304,
-                headers: {
-                    ETag: etag
-                }
-            });
+                    statusCode: 304,
+                    headers: {
+                        ETag: etag
+                    }
+                });
         });
     });
 
@@ -77,7 +77,7 @@ describe('compiless', function () {
         return expect('GET /something.txt', 'to yield response', {
             statusCode: 200,
             headers: {
-                ETag: /^W\/"\d-\d+"$/
+                ETag: /^W\/"[a-z0-9-]+"$/
             },
             body: 'foo\n'
         }).then(function (context) {
@@ -88,11 +88,11 @@ describe('compiless', function () {
                     'If-None-Match': etag
                 }
             }, 'to yield response', {
-                statusCode: 304,
-                headers: {
-                    ETag: etag
-                }
-            });
+                    statusCode: 304,
+                    headers: {
+                        ETag: etag
+                    }
+                });
         });
     });
 
