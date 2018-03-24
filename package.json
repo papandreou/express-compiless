@@ -34,10 +34,8 @@
     "express": "4.10.7",
     "istanbul": "0.3.13",
     "jshint": "2.7.0",
-    "messy": "6.2.0",
     "mocha": "2.2.4",
-    "unexpected": "8.2.0",
-    "unexpected-express": "7.0.1",
-    "unexpected-messy": "4.0.0"
+    "unexpected": "10.37.2",
+    "unexpected-express": "10.0.0"
   }
 }
