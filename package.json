@@ -20,7 +20,7 @@
     "compiler",
     "middleware"
   ],
-  "author": "Andreas Lind Petersen <andreas@one.com>",
+  "author": "Andreas Lind <andreaslindpetersen@gmail.com>",
   "license": "BSD-3-Clause",
   "dependencies": {
     "async": "=0.2.9",
