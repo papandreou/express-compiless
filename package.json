@@ -24,7 +24,7 @@
   "license": "BSD-3-Clause",
   "dependencies": {
     "async": "=2.6.1",
-    "csserror": "^1.0.1",
+    "csserror": "^2.0.2",
     "hijackresponse": "3.0.0",
     "less": ">= 2.4.0",
     "passerror": "1.1.1"
