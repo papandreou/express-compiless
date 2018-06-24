@@ -36,6 +36,6 @@
     "jshint": "^2.9.5",
     "mocha": "^5.0.5",
     "unexpected": "^10.37.2",
-    "unexpected-express": "^10.0.0"
+    "unexpected-express": "^11.0.0"
   }
 }
