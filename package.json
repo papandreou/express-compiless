@@ -7,7 +7,7 @@
     "lint": "jshint .",
     "test": "mocha",
     "ci": "npm test && npm run coverage && npm run lint && <coverage/lcov.info coveralls",
-    "coverage": "NODE_ENV=development istanbul cover _mocha -- --reporter dot && echo google-chrome coverage/lcov-report/index.html"
+    "coverage": "NODE_ENV=development nyc --reporter=lcov --reporter=text --all -- npm test && echo google-chrome coverage/lcov-report/index.html"
   },
   "repository": {
     "type": "git",
@@ -32,10 +32,15 @@
   "devDependencies": {
     "coveralls": "^3.0.0",
     "express": "^4.16.3",
-    "istanbul": "^0.4.5",
     "jshint": "^2.9.5",
     "mocha": "^6.0.0",
+    "nyc": "^13.3.0",
     "unexpected": "^11.0.0",
     "unexpected-express": "^11.0.0"
+  },
+  "nyc": {
+    "include": [
+      "lib/**"
+    ]
   }
 }
