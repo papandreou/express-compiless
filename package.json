@@ -23,11 +23,11 @@
   "author": "Andreas Lind <andreaslindpetersen@gmail.com>",
   "license": "BSD-3-Clause",
   "dependencies": {
-    "async": "=2.6.2",
+    "async": "^2.6.2",
     "csserror": "^2.0.2",
-    "hijackresponse": "4.0.0",
-    "less": "3.9.0",
-    "passerror": "1.1.1"
+    "hijackresponse": "^4.0.0",
+    "less": "^3.9.0",
+    "passerror": "^1.1.1"
   },
   "devDependencies": {
     "coveralls": "^3.0.0",
