@@ -1,1 +1,5 @@
-package.json
+/coverage/
+/node_modules/
+
+# Don't fight npm i --save
+/package.json
