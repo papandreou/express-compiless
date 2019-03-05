@@ -4,7 +4,7 @@
   "description": "Express middleware that compiles less files to css on the way out.",
   "main": "lib/compiless.js",
   "scripts": {
-    "lint": "eslint .",
+    "lint": "eslint . && prettier --check '**/*.js'",
     "test": "mocha",
     "ci": "npm test && npm run coverage && npm run lint && <coverage/lcov.info coveralls",
     "coverage": "NODE_ENV=development nyc --reporter=lcov --reporter=text --all -- npm test && echo google-chrome coverage/lcov-report/index.html"
@@ -42,6 +42,7 @@
     "express": "^4.16.4",
     "mocha": "^6.0.0",
     "nyc": "^13.3.0",
+    "prettier": "^1.16.4",
     "unexpected": "^11.0.0",
     "unexpected-express": "^11.0.0"
   },
