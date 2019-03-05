@@ -1,12 +1,12 @@
-/*global describe, it, __dirname*/
-var express = require('express'),
-    Path = require('path'),
-    unexpected = require('unexpected'),
-    compiless = require('../lib/compiless');
+/* global describe, it, __dirname */
+var express = require('express');
+    var Path = require('path');
+    var unexpected = require('unexpected');
+    var compiless = require('../lib/compiless');
 
 describe('compiless', function () {
-    var root = Path.resolve(__dirname, 'root'),
-        expect = unexpected.clone()
+    var root = Path.resolve(__dirname, 'root');
+        var expect = unexpected.clone()
             .installPlugin(require('unexpected-express'))
             .addAssertion('to yield response', function (expect, subject, value) {
                 return expect(
