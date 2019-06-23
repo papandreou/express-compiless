@@ -1,4 +1,3 @@
-/* global describe, it, __dirname */
 const express = require('express');
 const Path = require('path');
 const unexpected = require('unexpected');
