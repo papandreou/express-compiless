@@ -19,7 +19,7 @@ describe('compiless', () => {
             res.write('world');
             res.end();
           })
-          .use(express['static'](root)),
+          .use(express.static(root)),
         'to yield exchange',
         {
           request: subject,
