@@ -25,7 +25,7 @@
   "dependencies": {
     "async": "^3.0.0",
     "csserror": "^2.0.2",
-    "hijackresponse": "^5.0.0-rc.1",
+    "hijackresponse": "^5.0.0-rc.2",
     "less": "^3.12.2",
     "passerror": "^1.1.1"
   },
