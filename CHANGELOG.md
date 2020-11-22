@@ -1,3 +1,18 @@
+### v5.0.0 (2020-11-22)
+
+#### Pull requests
+
+- [#50](https://github.com/papandreou/express-compiless/pull/50) Upgrade prettier to version 2.2.0 ([depfu[bot]](mailto:23717796+depfu[bot]@users.noreply.github.com))
+- [#48](https://github.com/papandreou/express-compiless/pull/48) Upgrade eslint-config-standard to version 16.0.0 ([depfu[bot]](mailto:23717796+depfu[bot]@users.noreply.github.com))
+- [#47](https://github.com/papandreou/express-compiless/pull/47) Upgrade eslint-config-standard to version 15.0.0 ([depfu[bot]](mailto:23717796+depfu[bot]@users.noreply.github.com))
+
+#### Commits to master
+
+- [Also check \*.json with prettier](https://github.com/papandreou/express-compiless/commit/1d55fd5d24f38b58dda8790761de447f8c4cabb1) ([Andreas Lind](mailto:andreaslindpetersen@gmail.com))
+- [Add CHANGELOG.md + offline-github-changelog integration](https://github.com/papandreou/express-compiless/commit/9501e25e9140742ba46f9310bee5bfcd91f36e43) ([Andreas Lind](mailto:andreaslindpetersen@gmail.com))
+- [Drop node.js 8 support, add 14, lint with 14 \(semver-major\)](https://github.com/papandreou/express-compiless/commit/3f5ed504d1d8fbef503e72a5e5aa1d9de6997727) ([Andreas Lind](mailto:andreaslindpetersen@gmail.com))
+- [Update unexpected and unexpected-express](https://github.com/papandreou/express-compiless/commit/d69ac0eee690f9590d5fa6fe64d104332f2a9bf9) ([Andreas Lind](mailto:andreaslindpetersen@gmail.com))
+
 ### v4.2.0 (2020-09-28)
 
 #### Pull requests
