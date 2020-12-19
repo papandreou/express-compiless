@@ -7,25 +7,27 @@ describe('compiless', () => {
   const root = Path.resolve(__dirname, 'root');
   const expect = unexpected
     .clone()
-    .installPlugin(require('unexpected-express'))
-    .addAssertion('to yield response', (expect, subject, value) =>
-      expect(
-        express()
-          .use(compiless({ root }))
-          .use('/hello', (req, res, next) => {
-            res.setHeader('Content-Type', 'text/plain');
-            res.setHeader('ETag', 'W/"fake-etag"');
-            res.status(200);
-            res.write('world');
-            res.end();
-          })
-          .use(express.static(root)),
-        'to yield exchange',
-        {
-          request: subject,
-          response: value,
-        }
-      )
+    .use(require('unexpected-express'))
+    .addAssertion(
+      '<string|object> to yield response <object>',
+      (expect, subject, value) =>
+        expect(
+          express()
+            .use(compiless({ root }))
+            .use('/hello', (req, res, next) => {
+              res.setHeader('Content-Type', 'text/plain');
+              res.setHeader('ETag', 'W/"fake-etag"');
+              res.status(200);
+              res.write('world');
+              res.end();
+            })
+            .use(express.static(root)),
+          'to yield exchange',
+          {
+            request: subject,
+            response: value,
+          }
+        )
     );
 
   it('should not mess with request for non-less file', () =>
