@@ -1,10 +1,10 @@
 const express = require('express');
-const Path = require('path');
+const pathModule = require('path');
 const unexpected = require('unexpected');
 const compiless = require('../lib/compiless');
 
 describe('compiless', () => {
-  const root = Path.resolve(__dirname, 'root');
+  const root = pathModule.resolve(__dirname, 'root');
   const expect = unexpected
     .clone()
     .use(require('unexpected-express'))
