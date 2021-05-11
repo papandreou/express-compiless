@@ -111,8 +111,7 @@ describe('compiless', () => {
       headers: {
         'Content-Type': 'text/css; charset=utf-8',
       },
-      body:
-        '.compilessinclude {background-image: url(imports/a.less); display: none;}\nbody {\n  width: 100%;\n}\n#foo #bar {\n  color: red;\n}\n/* multi-line\n   comment\n*/\n',
+      body: '.compilessinclude {background-image: url(imports/a.less); display: none;}\nbody {\n  width: 100%;\n}\n#foo #bar {\n  color: red;\n}\n/* multi-line\n   comment\n*/\n',
     });
   });
 
